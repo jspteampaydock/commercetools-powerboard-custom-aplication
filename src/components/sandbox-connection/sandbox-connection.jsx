@@ -20,9 +20,13 @@ import PulseLoader from 'react-spinners/PulseLoader';
 import CommerceToolsAPIAdapter from '../../commercetools-api-adaptor';
 import ValidationPowerboardData from '../../validation-powerboard-data';
 import { INITIAL_SANDBOX_CONNECTION_FORM } from '../../constants';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const SandboxConnectionForm = () => {
-  const apiAdapter = new CommerceToolsAPIAdapter();
+  const env = useApplicationContext(
+    (context) => context.environment
+  );
+  const apiAdapter = new CommerceToolsAPIAdapter(env);
 
   const intl = useIntl();
   const [error, setError] = useState(null);
@@ -668,7 +672,7 @@ const SandboxConnectionForm = () => {
                 </CollapsiblePanel>
 */}
 
-        <CollapsiblePanel header="Wallet" isDefaultClosed={true} className="collapsible-panel">
+        <CollapsiblePanel header="Wallets" isDefaultClosed={true} className="collapsible-panel">
           <Constraints.Horizontal max={'scale'}>
             <Spacings.Stack scale="xl">
 

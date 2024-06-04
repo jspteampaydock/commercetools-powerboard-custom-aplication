@@ -12,6 +12,7 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import NumberField from '@commercetools-uikit/number-field';
 import PulseLoader from 'react-spinners/PulseLoader';
 import CommerceToolsAPIAdapter from '../../commercetools-api-adaptor';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const OrdersHistory = () => {
     const [error, setError] = useState(null);
@@ -22,6 +23,7 @@ const OrdersHistory = () => {
     const [typedAmountRefund, setTypedAmountRefund] = useState({});
     const [updateAmountRefund, setUpdateAmountRefund] = useState({});
     const [changeStatus, setChangeStatus] = useState({});
+    const [changeStatusName, setChangeStatuName] = useState({});
     const [changeDate, setChangeDate] = useState({});
     const [isVisibleInputRefaund, setIsVisibleInputRefaund] = useState({});
     const [isVisibleRefundButtons, setIsVisibleRefundButtons] = useState({});
@@ -36,7 +38,10 @@ const OrdersHistory = () => {
     const [loading, setLoading] = useState({});
     const [sortedColumn, setSortedColumn] = useState(null);
     const [sortOrder, setSortOrder] = useState('asc');
-    const apiAdapter = new CommerceToolsAPIAdapter();
+    const env = useApplicationContext(
+      (context) => context.environment
+    );
+    const apiAdapter = new CommerceToolsAPIAdapter(env);
 
     const requestUpdateOrder = async (id, status, refund_amount = null, updated_at) => {
 
@@ -56,7 +61,7 @@ const OrdersHistory = () => {
         } else {
             setRowErrors(prevState => ({
                 ...prevState,
-                [id]: result.error,
+                [id]: {message: result.message},
             }));
             setLoading(prevState => ({
                 ...prevState,
@@ -72,7 +77,7 @@ const OrdersHistory = () => {
                 ...prevState,
                 [orderId]: status,
             }));
-            setStatusName(prevState => ({
+            setChangeStatuName(prevState => ({
                 ...prevState,
                 [orderId]: statusName,
             }));
@@ -394,7 +399,7 @@ const OrdersHistory = () => {
                         <td
                           className={`status ${changeStatus[d.order_number] ? changeStatus[d.order_number]: d.status}`}>
                             <span className="mobile-label">{columns[9].label}:</span>
-                            <span>{statusName[d.order_number] ? statusName[d.order_number] : d.statusName}</span>
+                            <span>{changeStatusName[d.order_number] ? changeStatusName[d.order_number] : d.statusName}</span>
                         </td>
                         <td className="action">
                             <div className="action-wrapper">
