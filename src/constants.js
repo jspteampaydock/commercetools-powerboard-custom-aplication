@@ -51,7 +51,7 @@ export const INITIAL_LIVE_CONNECTION_FORM = {
   alternative_payment_methods_afterpay_v1_gateway_id: '',
   alternative_payment_methods_afterpay_v1_fraud: 'Disable',
   alternative_payment_methods_afterpay_v1_fraud_service_id: '',
-  alternative_payment_methods_afterpay_v1_direct_charge: 'Disable',
+  alternative_payment_methods_afterpay_v1_direct_charge: 'Enable',
   alternative_payment_methods_zippay_use_on_checkout: '',
   alternative_payment_methods_zippay_gateway_id: '',
   alternative_payment_methods_zippay_fraud: 'Disable',
