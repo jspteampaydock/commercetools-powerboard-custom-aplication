@@ -5,15 +5,15 @@ import { PERMISSIONS, entryPointUriPath } from './src/constants';
  */
 const config = {
     name: 'powerboard',
-    entryPointUriPath: 'powerboard_app',
+    entryPointUriPath: 'powerboard-app',
     cloudIdentifier: 'gcp-eu',
     env: {
         development: {
             initialProjectKey: process.env.APP_PROJECT_KEY,
         },
         production: {
-            applicationId: 'clvzerbzx0007nrxevtwbyjpm',
-            url: 'https://powerboard-commercetools-custom-application.vercel.app',
+            applicationId: 'clx061kca005it6mmeidbknjx',
+            url: 'https://commercetools-powerboard-custom-aplication.vercel.app',
         },
     },
     additionalEnv:{
