@@ -262,7 +262,8 @@ class CommerceToolsAPIAdapter {
       let objOrder = {
         id: order.id,
         order_number: order.orderNumber,
-        order_url: `https://mc.${this.region}.commercetools.com/${this.projectKey}/orders/${order.id}/payments`,
+        order_payment_status: order.paymentState,
+        order_url: `https://mc.${this.region}.commercetools.com/${this.projectKey}/orders/${order.id}`,
       };
 
       if (order.paymentInfo.payments) {
