@@ -42,7 +42,7 @@
     "@commercetools-uikit/constraints": "^17.0.0",
     "@commercetools-uikit/data-table": "^18.2.0",
     "@commercetools-uikit/flat-button": "^17.0.0",
-    "@commercetools-uikit/grid": "^17.0.0",
+    "@commercetools-uikit/grid": "^19.5.0",
     "@commercetools-uikit/hooks": "^17.0.0",
     "@commercetools-uikit/icons": "^17.0.0",
     "@commercetools-uikit/link": "^17.0.0",
