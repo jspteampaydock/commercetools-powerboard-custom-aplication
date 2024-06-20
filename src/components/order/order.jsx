@@ -266,7 +266,7 @@ const OrdersHistory = () => {
         { key: 'payment_source_type', label: 'Payment Source Type' },
         { key: 'created_at', label: 'Creation date' },
         { key: 'updated_at', label: 'Last updated date' },
-        { key: 'order_payment_status', label: 'Commercetools Payment Status' },
+        { key: 'order_payment_status', label: 'CommerceTool status' },
         { key: 'status', label: 'Status' },
         { key: 'action', label: 'Action' },
     ];
