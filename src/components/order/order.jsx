@@ -329,6 +329,11 @@ const OrdersHistory = () => {
         setTypedAmountRefund({ ...typedAmountRefund, [id]: value });
     };
 
+    const handleTypedAmountCaptured = (e, id) => {
+        const value = e.target.value;
+        setTypedAmountCaptured ({ ...typedAmountCaptured , [id]: value });
+    };
+
     const columns = [
         { key: 'id', label: 'Commercetools Order ID' },
         { key: 'powerboard_transaction', label: 'PowerBoard Charge ID' },
@@ -514,9 +519,9 @@ const OrdersHistory = () => {
                         </td>
                         <td className="action">
                             <div className="action-wrapper">
-                                <span className="mobile-label">{columns[10].label}:</span>
+                                <span className="mobile-label">{columns[11].label}:</span>
                                 {loading[d.order_number] ?
-                                    <PulseLoader color={'#36d7b7'} loading={loading} size={10}/> : (
+                                    <PulseLoader color={'#36d7b7'} loading={loading} size={11}/> : (
                                         <>
                                             {d.status === 'powerboard-authorize' && isVisibleAuthorizedButtons[d.order_number] !== false && (
 
