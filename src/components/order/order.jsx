@@ -25,7 +25,7 @@ const OrdersHistory = () => {
     const [typedAmountRefund, setTypedAmountRefund] = useState({});
     const [updateAmountRefund, setUpdateAmountRefund] = useState({});
     const [changeStatus, setChangeStatus] = useState({});
-    const [changeStatusName, setChangeStatuName] = useState({});
+    const [changeStatusName, setChangeStatusName] = useState({});
     const [typedAmountCaptured, setTypedAmountCaptured] = useState({});
     const [isVisibleInputCapturedAmount, setVisibleInputCapturedAmount] = useState({});
     const [updateAmountCaptured, setUpdateAmountCaptured] = useState({});
@@ -52,6 +52,7 @@ const OrdersHistory = () => {
     const apiAdapter = new CommerceToolsAPIAdapter(env);
 
     const requestUpdateOrder = async (id, status, operation_amount  = null, updated_at) => {
+
 
         const requestData = {
             orderId: id,
@@ -83,7 +84,6 @@ const OrdersHistory = () => {
                 [id]: false,
             }));
         }
-
     };
 
     useEffect(() => {
@@ -92,7 +92,7 @@ const OrdersHistory = () => {
                 ...prevState,
                 [orderId]: status,
             }));
-            setChangeStatuName(prevState => ({
+            setChangeStatusName(prevState => ({
                 ...prevState,
                 [orderId]: statusName,
             }));
@@ -104,6 +104,7 @@ const OrdersHistory = () => {
                 ...prevState,
                 [orderId]: dateUpdated,
             }));
+
             if (type === 'cancel-authorize') {
                 setIsVisibleAuthorizedButtons(prevState => ({
                     ...prevState,
@@ -213,7 +214,7 @@ const OrdersHistory = () => {
         }
 
         let newDates = moment().format('YYYY-MM-DD HH:mm:ss');
-        if (type === 'capture' || type === 'cancel-authorize') {
+        if (type === 'cancel-authorize') {
             const newStatus = type === 'capture' ? 'powerboard-paid' : 'powerboard-cancelled';
             const newStatusName = type === 'capture' ? 'Paid via PowerBoard' : 'Cancelled via PowerBoard';
             const ctStatusName = type === 'capture' ? 'Paid' : 'Failed';
@@ -247,14 +248,16 @@ const OrdersHistory = () => {
             }));
 
             const newStatus = capturedAmount === amount ? 'powerboard-paid' : 'powerboard-p-paid';
-            const newStatusName = newStatus === 'powerboard-paid' ? 'Paid via Powerboard' : 'Partial paid via Powerboard';
+            const newStatusName = newStatus === 'powerboard-paid' ? 'Paid via PowerBoard' : 'Partial paid via PowerBoard';
+            const ctStatusName = 'Paid'
+
             setType(type);
             setStatus(newStatus);
             setCaptured(capturedAmount);
+            setCTStatusName(ctStatusName)
             setStatusName(newStatusName)
             setOrderId(id);
             setDateUpdated(newDates);
-
             requestUpdateOrder(id, newStatus, capturedAmount, newDates);
         }
 
@@ -537,7 +540,7 @@ const OrdersHistory = () => {
                                                                 isRequired={true}
                                                             />
                                                             <PrimaryButton
-                                                                label="Captured"
+                                                                label="Capture"
                                                                 onClick={() => handleOrderAction('submit-captured', d.order_number, d.amount, d.captured_amount)}
                                                                 isDisabled={
                                                                     (typedAmountCaptured[d.order_number] <= 0 ||
