@@ -100,6 +100,7 @@ export const CHARGE_STATUSES =  {
   'powerboard-requested': 'Requested via PowerBoard',
   'powerboard-failed': 'Failed via PowerBoard',
   'powerboard-received': 'Received via PowerBoard',
+  'powerboard-p-paid': 'Partial paid via PowerBoard',
 }
 export const API_LIVE_URL = 'https://api.powerboard.commbank.com.au';
 export const API_SANDBOX_URL = 'https://api.preproduction.powerboard.commbank.com.au';
